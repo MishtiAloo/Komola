@@ -28,7 +28,7 @@ const matchSchema = new mongoose.Schema ({
         type: String
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     time: {
@@ -46,6 +46,9 @@ const matchSchema = new mongoose.Schema ({
     done: {
         type: Boolean,
         required: true
+    },
+    tieBreaker: {
+        type: Boolean
     },
     matchResult: result
 });

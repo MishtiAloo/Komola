@@ -10,6 +10,7 @@ import SignUp from './components/SignUp'
 import Nav from './components/Nav'
 import MatchSection from './components/MatchSection'
 import MatchCard from './components/MatchCard'
+import MatchDetails from './components/MatchDetails'
 
 import './components/Login.css'
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/homePage" element={<HomePage />} />
           <Route path="/matchsection" element={<MatchSection />} />
           <Route path="/matchcard" element={<MatchCard />} />
+          <Route path="/matchdetails" element={<MatchDetails />} />
         </Routes>
       </Router>
     </>

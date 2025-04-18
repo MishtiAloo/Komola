@@ -1,9 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MatchCard from "./MatchCard";
+import { Link } from "react-router-dom";
+
+import './basicStyle.css'
 
 function MatchSection () {
-    return <div
-    style={{
+
+    const [incompleteMatches, setIncompleteMatches] = useState([]);
+    
+    useEffect(() => {
+        const fetchMatches = async () => {
+          try {
+            const res = await fetch("http://localhost:5000/api/matches", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+      
+            const data = await res.json();
+      
+            if (res.ok && data.success) {
+                const newItems = data.data.filter(match => match.done === false);
+                setIncompleteMatches (newItems);  
+            }
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        };
+      
+        fetchMatches();
+      }, []);      
+
+    const generateMatchCards = () => {
+        return incompleteMatches.map((matchItem) => (
+            <MatchCard opponent={matchItem.vs}  matchImage={matchItem.coverImg} cup={matchItem.cup} date={matchItem.date} time={matchItem.time} venue={matchItem.venue} />
+        ));
+    };
+      
+
+    return <div style={{
         padding: '13px',
         width: '90vw',
         margin: '0 auto',
@@ -11,28 +47,17 @@ function MatchSection () {
         borderRadius: '20px',
         lineHeight: '0.1'
     }}>
-        <div
-        style={{
+        <div style={{
             display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'
         }}>
             <h3>Matches</h3>
-            <h4 style={{color: 'orange'}}>See all matches</h4>
+            <Link className="navigate-link" to = '/'>Forgot Pass?</Link>
         </div>
 
-        <div
-        style={{
+        <div style={{
             display: 'flex', flexDirection: 'row', overflowX: 'auto', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth'
         }}>
-            <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>    
-            <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>
-            <MatchCard/>
+            {incompleteMatches.length? generateMatchCards() : <p style={{margin: '0 auto', height: '90px', lineHeight: '1.5'}}>No scheduled matches</p>}
         </div>
 
         <div style={{

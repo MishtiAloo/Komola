@@ -1,0 +1,20 @@
+.navigate-link {
+    font-size: 15px;
+    font-weight: 700;
+    color: orange;
+    transition: color 0.4s ease, transform 0.3s;
+}
+
+.navigate-link:hover {
+    color: white;
+    transform: scale(1.05);
+}
+
+.basic-container {
+    padding: 13px;
+    width: 90vw;
+    margin: 0 auto;
+    height: fit-content;
+    border-radius: 20px;
+    line-height: 1.5;
+}
