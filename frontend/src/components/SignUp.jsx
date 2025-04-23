@@ -38,8 +38,6 @@ function SignUp() {
       });
   
       const data = await res.json();
-      console.log(data);
-      console.log(data.message);
 
       if (res.status == 411) setIsDuplicateEmail(true);
       if (res.ok && data.success) navigate ('/login');

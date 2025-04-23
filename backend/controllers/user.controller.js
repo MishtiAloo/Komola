@@ -99,3 +99,19 @@ export const loginUser = async (req, res) => {
         res.status(500).json({success: false, message: "Server er bhitre jhamela"});
     }
 }
+
+export const findUserByID = async (req, res) => {
+    const {id} = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({success: false, message: "Bhul id diso, ei id er keu nai"});
+    }
+
+    try {
+        const user = await User.findOne({_id: id})
+        res.status(201).json({success: true, message: "User pawa gese", data: user})
+    } catch (error) {
+        console.error ("User khujte giya jhamela lagse: ", error.message)
+        res.status(500).json({success: false, message: "Server er bhitre jhamela"});
+    }
+}

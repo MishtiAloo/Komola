@@ -12,11 +12,10 @@
     min-width: 200px;
 }
 
-#label {
+.label {
     font-size: 24px;
     color: #ff4f00;
     font-weight: bold;
-    
 }
 
 #no-account {

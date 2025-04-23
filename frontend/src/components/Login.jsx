@@ -45,7 +45,7 @@ function Login() {
 
   return (
     <div className='form-div'>
-        <p id='label'>Login</p>
+        <p className='label'>Login</p>
         
         <input 
           type="text" 

@@ -34,7 +34,7 @@ function MatchSection () {
 
     const generateMatchCards = () => {
         return incompleteMatches.map((matchItem) => (
-            <MatchCard opponent={matchItem.vs}  matchImage={matchItem.coverImg} cup={matchItem.cup} date={matchItem.date} time={matchItem.time} venue={matchItem.venue} />
+            <MatchCard key={matchItem._id} CardMatchItem={matchItem} />
         ));
     };
       
@@ -51,7 +51,7 @@ function MatchSection () {
             display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'
         }}>
             <h3>Matches</h3>
-            <Link className="navigate-link" to = '/'>Forgot Pass?</Link>
+            <Link className="navigate-link" to = '/'>See prev matches?</Link>
         </div>
 
         <div style={{
